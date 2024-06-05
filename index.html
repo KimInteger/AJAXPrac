@@ -6,9 +6,11 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="root">
+
+  </div>
   <script>
-    const a = new XMLHttpRequest();
-    console.dir(a);
+    const root = document.getElementById('root');
 
     const getDaejeonAJAX = ()=>{
       const xhr = new XMLHttpRequest();
@@ -24,9 +26,18 @@
 
           console.dir(result);
 
-          const daejeon = result.msgBody[0];
+          const daejeon = result.msgBody;
 
-          console.dir(daejeon);
+          console.log(Array.isArray(daejeon));
+
+          daejeon.forEach((item) => {
+            const li = document.createElement('li');
+            li.textContent = item.title;
+            root.appendChild(li);
+          });
+          
+
+          
         }
       });
       xhr.send();
