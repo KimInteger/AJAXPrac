@@ -21,14 +21,21 @@ const endpoint = `http://apis.data.go.kr/6300000/eventDataService`;
 // ! 인증키는 인코드 방식으로 해주세요.
 
 const keyName = '4WZqKSFBKTKvEh0FmRpWZqAVCkO%2B2yz3ehUuYtqigHgFExfJZwCVJlXUJsqecScdYmrXgKD%2BU4tfMJql%2FHst%2Fg%3D%3D';
-const example = `http://apis.data.go.kr/6300000/eventDataService/eventDataListJson
-?
-serviceKey
-=
-${keyName}
-&
-numOfRows=10
-&
-pageNo=1`;
+const example = `http://apis.data.go.kr/6300000/eventDataService/eventDataListJson?serviceKey=${keyName}&numOfRows=10&pageNo=1`;
 
 console.log(example);
+
+const getDaejeonAJAX = ()=>{
+  const xhr = new XMLHttpRequest();
+  console.dir('데이터 받기 전 조회 : ' + xhr);
+  xhr.open("GET", "http://apis.data.go.kr/6300000/eventDataService/eventDataListJson?serviceKey=4WZqKSFBKTKvEh0FmRpWZqAVCkO%2B2yz3ehUuYtqigHgFExfJZwCVJlXUJsqecScdYmrXgKD%2BU4tfMJql%2FHst%2Fg%3D%3D&numOfRows=10&pageNo=1", true);
+  xhr.addEventListener('load',()=>{
+    if(xhr.status === 200){
+      console.log('데이터 받은 후 조회');
+      console.dir(xhr);
+    }
+  });
+  xhr.send();
+};
+
+getDaejeonAJAX();
