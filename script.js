@@ -1,0 +1,1 @@
+console.log('와 script.js');
