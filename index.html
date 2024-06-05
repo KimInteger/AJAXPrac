@@ -6,6 +6,33 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <script>
+    const a = new XMLHttpRequest();
+    console.dir(a);
+
+    const getDaejeonAJAX = ()=>{
+      const xhr = new XMLHttpRequest();
+      console.dir('데이터 받기 전 조회 : ' + xhr);
+      console.dir(xhr);
+      xhr.open("GET", "http://apis.data.go.kr/6300000/eventDataService/eventDataListJson?serviceKey=4WZqKSFBKTKvEh0FmRpWZqAVCkO%2B2yz3ehUuYtqigHgFExfJZwCVJlXUJsqecScdYmrXgKD%2BU4tfMJql%2FHst%2Fg%3D%3D&numOfRows=10&pageNo=1", true);
+      xhr.addEventListener('load',()=>{
+        if(xhr.status === 200){
+          console.log('데이터 받은 후 조회');
+          console.dir(xhr);
+
+          const result = JSON.parse(xhr.responseText);
+
+          console.dir(result);
+
+          const daejeon = result.msgBody[0];
+
+          console.dir(daejeon);
+        }
+      });
+      xhr.send();
+    };
+
+    getDaejeonAJAX(); 
+  </script>
 </body>
 </html>
